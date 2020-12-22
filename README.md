@@ -166,15 +166,22 @@ The REST API to the YFinAPI is described below.
 
 ### Request
 
-`GET /fin/hist/?ticker=AAPL&period=1wk&interval=1h`
+`GET /fin/hist/?ticker=AAPL&period=5d&interval=1d`
 
-    curl -i -H 'Accept: application/json' http://localhost:7000/fin/?ticker=AAPL&period=1wk&interval=1h
+    curl -i -H 'Accept: application/json' http://localhost:7000/fin/?ticker=AAPL&period=5d&interval=1d
 
 ### Response
 
 ```json
 {
 	"tickerHist": {
+		"index": [
+			"2020-12-15,00:00:00",
+			"2020-12-16,00:00:00",
+			"2020-12-17,00:00:00",
+			"2020-12-18,00:00:00",
+			"2020-12-21,00:00:00"
+		],
 		"columns": [
 			"Open",
 			"High",
@@ -184,19 +191,12 @@ The REST API to the YFinAPI is described below.
 			"Dividends",
 			"Stock Splits"
 		],
-		"index": [
-			1607990400000,
-			1608076800000,
-			1608163200000,
-			1608249600000,
-			1608508800000
-		],
 		"data": [
 			[124.34, 127.9, 124.13, 127.88, 157572300, 0, 0],
 			[127.41, 128.37, 126.56, 127.81, 98208600, 0, 0],
 			[128.9, 129.58, 128.04, 128.7, 94359800, 0, 0],
-			[128.96, 129.1, 126.12, 126.66, 192354800, 0, 0],
-			[125.02, 128.31, 123.45, 128.23, 109818100, 0, 0]
+			[128.96, 129.1, 126.12, 126.66, 192541500, 0, 0],
+			[125.02, 128.31, 123.45, 128.23, 120093700, 0, 0]
 		]
 	}
 }

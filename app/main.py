@@ -44,7 +44,10 @@ class FinHist(Resource):
         print(args)
         ticker = yf.Ticker(args['ticker'])
         try:
-            return {"tickerHist": ticker.history(period=args['period'], interval=args['interval']).to_json(orient="split", date_format="epoch")}
+            hist = ticker.history(
+                period=args['period'], interval=args['interval'])
+            hist.index = hist.index.strftime("%Y-%m-%d,%H:%M:%S")
+            return {"tickerHist": hist.to_dict(orient="split")}
         except:
             abort(404, message="ERROR: Invalid ticker!")
 
